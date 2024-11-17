@@ -1,0 +1,13 @@
+name: Notify Discord on Pull Request
+on:
+  pull_request:
+    types: [opened]
+jobs:
+  notify-discord:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send notification to Discord
+        uses: Ilshidur/action-discord@v2
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          message: "A new Pull Request has been created: ${{ github.event.pull_request.html_url }}"
